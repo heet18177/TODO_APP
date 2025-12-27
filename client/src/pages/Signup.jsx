@@ -4,6 +4,8 @@ import axios from "axios";
 import { toast } from "sonner";
 import { setUserdata } from "@/redux/Userslice";
 import { useDispatch } from "react-redux";
+const BASE_URL = import.meta.env.VITE_BACKEND_URL;
+
 
 const Signup = () => {
   const [name, setName] = useState("");
@@ -17,7 +19,7 @@ const Signup = () => {
     e.preventDefault();
     try {
       setLoading(true)
-      const result = await axios.post("http://localhost:8000/api/auth/signup", {
+      const result = await axios.post(`${BASE_URL}/api/auth/signup`, {
         name,
         email,
         password,

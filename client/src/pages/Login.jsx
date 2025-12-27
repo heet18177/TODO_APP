@@ -4,6 +4,7 @@ import React, { useState } from 'react'
 import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'sonner';
+const BASE_URL = import.meta.env.VITE_BACKEND_URL;
 
 const Login = () => {
     const dispatch = useDispatch();
@@ -17,7 +18,7 @@ const Login = () => {
       try {
         setLoader(true)
         const result = await axios.post(
-          "http://localhost:8000/api/auth/login",
+          `${BASE_URL}/api/auth/login`,
           {
             email,
             password,

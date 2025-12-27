@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
+const BASE_URL = import.meta.env.VITE_BACKEND_URL;
 
 const Task = () => {
   const navigate = useNavigate();
@@ -14,7 +15,7 @@ const Task = () => {
     e.preventDefault();
     try {
       const result = await axios.post(
-        "http://localhost:8000/api/task/add",
+        `${BASE_URL}/api/task/add`,
         {
           title,
           description,
