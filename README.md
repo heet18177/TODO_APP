@@ -37,7 +37,4 @@ This project is divided into **client** and **server** folders, following a clea
 - REST API
 - npm packages
 
----
-
-## 📁 Project Structure
 
