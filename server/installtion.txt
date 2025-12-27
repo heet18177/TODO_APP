@@ -1,0 +1,8 @@
+npm init -y
+npm i nodemon
+npm i express
+npm i dotenv
+npm i mongoose
+npm i jsonwebtoken
+npm i bcryptjs
+npm i cookie-parser
