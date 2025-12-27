@@ -7,6 +7,7 @@ import Todo from "./pages/Todo";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { setUserdata } from "./redux/Userslice";
+const BASE_URL = import.meta.env.VITE_BACKEND_URL;
 
 const App = () => {
   const dispatch = useDispatch();
@@ -17,7 +18,7 @@ const App = () => {
     const fetchCurrUser = async () => {
       try {
         setloading(true);
-        const res = await axios.get("http://localhost:8000/api/task/getUser", {
+        const res = await axios.get(`${BASE_URL}/api/task/getUser`, {
           withCredentials: true,
         });
         dispatch(setUserdata(res.data));
@@ -28,8 +29,10 @@ const App = () => {
       }
     };
 
-    fetchCurrUser();
-  }, [!userdata]);
+    if (!userdata) {
+      fetchCurrUser();
+    }
+  }, [userdata]);
 
   if (loading) {
     return (

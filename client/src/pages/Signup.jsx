@@ -6,7 +6,6 @@ import { setUserdata } from "@/redux/Userslice";
 import { useDispatch } from "react-redux";
 const BASE_URL = import.meta.env.VITE_BACKEND_URL;
 
-
 const Signup = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");

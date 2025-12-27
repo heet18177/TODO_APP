@@ -35,7 +35,6 @@ export const signup = async (req, res) => {
             { expiresIn: "7d" }
         );
 
-
         res.cookie("token", token, {
             httpOnly: true,
             secure: true,
