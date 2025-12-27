@@ -34,7 +34,7 @@ const Task = () => {
   const handlLogout = async () => {
     try {
       const result = await axios.post(
-        "http://localhost:8000/api/auth/logout",
+        `${BASE_URL}/api/auth/logout`,
         {},
         { withCredentials: true }
       );
