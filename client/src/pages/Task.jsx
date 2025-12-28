@@ -1,8 +1,8 @@
+import { SERVER_URL } from "@/main";
 import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
-const BASE_URL = import.meta.env.VITE_BACKEND_URL;
 
 const Task = () => {
   const navigate = useNavigate();
@@ -15,7 +15,7 @@ const Task = () => {
     e.preventDefault();
     try {
       const result = await axios.post(
-        `${BASE_URL}/api/task/add`,
+        `${SERVER_URL}/api/task/add`,
         {
           title,
           description,
@@ -34,7 +34,7 @@ const Task = () => {
   const handlLogout = async () => {
     try {
       const result = await axios.post(
-        `${BASE_URL}/api/auth/logout`,
+        `${SERVER_URL}/api/auth/logout`,
         {},
         { withCredentials: true }
       );

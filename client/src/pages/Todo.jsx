@@ -1,8 +1,8 @@
+import { SERVER_URL } from "@/main";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
-const BASE_URL = import.meta.env.VITE_BACKEND_URL;
 
 const Todo = () => {
   const navigate = useNavigate();
@@ -20,7 +20,7 @@ const Todo = () => {
   // Get tasks
   const getTask = async () => {
     try {
-      const result = await axios.get(`${BASE_URL}/api/task/get`, {
+      const result = await axios.get(`${SERVER_URL}/api/task/get`, {
         withCredentials: true,
       });
       setTodo(result.data.tasks);
@@ -41,7 +41,7 @@ const Todo = () => {
     if (!window.confirm("Delete this task?")) return;
 
     try {
-      await axios.delete(`${BASE_URL}/api/task/delete/${id}`, {
+      await axios.delete(`${SERVER_URL}/api/task/delete/${id}`, {
         withCredentials: true,
       });
 
@@ -56,7 +56,7 @@ const Todo = () => {
   // Update task
   const updateTask = async (id) => {
     try {
-      await axios.post(`${BASE_URL}/api/task/update/${id}`, editData, {
+      await axios.post(`${SERVER_URL}/api/task/update/${id}`, editData, {
         withCredentials: true,
       });
 

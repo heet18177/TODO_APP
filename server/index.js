@@ -11,12 +11,7 @@ app.set("trust proxy", 1);
 app.use(express.json());
 app.use(cookieParser());
 
-const allowedOrigins = [
-    "http://localhost:5173",
-    "https://todo-app-client-f79v.onrender.com"
-];
-
-app.use(cors({origin : allowedOrigins , credentials : true}));
+app.use(cors({origin : process.env.CLIENT_URL , credentials : true}));
     
 
 const Port = process.env.PORT || 8000
