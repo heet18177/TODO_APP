@@ -10,6 +10,7 @@ import { FetchCurrUser } from "./Thunk/FetchCurrUser";
 const App = () => {
   const dispatch = useDispatch();
   const { userdata , loading} = useSelector((state) => state.user);
+  console.log(userdata);
 
   useEffect(() => {
       dispatch(FetchCurrUser());
@@ -29,7 +30,7 @@ const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Login />} />
+        <Route path="/" element={userdata ? <Task /> : <Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/task" element={userdata ? <Task /> : <Login />} />
         <Route path="/todo" element={<Todo />} />
