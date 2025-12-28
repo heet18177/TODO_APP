@@ -1,5 +1,5 @@
 import { SERVER_URL } from '@/main';
-import { setUserdata } from '@/redux/Userslice';
+import { setLoading, setUserdata } from '@/redux/Userslice';
 import axios from 'axios';
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux';
@@ -17,6 +17,7 @@ const Login = () => {
       e.preventDefault();
       try {
         setLoader(true)
+        dispatch(setLoading(true));
         const result = await axios.post(
           `${SERVER_URL}/api/auth/login`,
           {
@@ -26,11 +27,13 @@ const Login = () => {
           { withCredentials: true }
         );
         dispatch(setUserdata(result.data));
+        dispatch(setLoading(false));
         toast.success("User login successfull...");
         navigate("/task")
         // console.log(result.data);
         setLoader(false)
       } catch (error) {
+        dispatch(setLoading(false));
         console.log(error);
         toast.error("Uses authentication fails...");
       }

@@ -17,6 +17,7 @@ const Signup = () => {
   const handleSignup = async (e) => {
     e.preventDefault();
     try {
+      dispatch(setLoading(true));
       setLoading(true);
       const result = await axios.post(
         `${SERVER_URL}/api/auth/signup`,
@@ -27,12 +28,14 @@ const Signup = () => {
         },
         { withCredentials: true }
       );
+      dispatch(setLoading(false));
       dispatch(setUserdata(result.data));
       toast.success("User sign up successfull...");
       navigate("/task");
       setLoading(false);
       // console.log(result.data);
     } catch (error) {
+      dispatch(setLoading(false));
       console.log(error);
       toast.error("Uses authentication fails...");
     }
