@@ -10,23 +10,27 @@ const Signup = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [loading , setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleSignup = async (e) => {
     e.preventDefault();
     try {
-      setLoading(true)
-      const result = await axios.post(`${BASE_URL}/api/auth/signup`, {
-        name,
-        email,
-        password,
-      });
+      setLoading(true);
+      const result = await axios.post(
+        `${BASE_URL}/api/auth/signup`,
+        {
+          name,
+          email,
+          password,
+        },
+        { withCredentials: true }
+      );
       dispatch(setUserdata(result.data));
       toast.success("User sign up successfull...");
       navigate("/task");
-      setLoading(false)
+      setLoading(false);
       // console.log(result.data);
     } catch (error) {
       console.log(error);
