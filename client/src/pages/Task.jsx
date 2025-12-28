@@ -55,7 +55,12 @@ const Task = () => {
         </h1>
 
         <div className="flex gap-3">
-          <button onClick={()=>{navigate("/todo")}} className="rounded-lg bg-indigo-600 px-4 py-2 text-sm md:text-base font-semibold text-white hover:bg-indigo-700 transition">
+          <button
+            onClick={() => {
+              navigate("/todo");
+            }}
+            className="rounded-lg bg-indigo-600 px-4 py-2 text-sm md:text-base font-semibold text-white hover:bg-indigo-700 transition"
+          >
             Todos
           </button>
           <button
