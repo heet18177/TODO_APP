@@ -37,11 +37,18 @@ import jwt from "jsonwebtoken";
 
 export const isAuth = (req, res, next) => {
     try {
-        // debug log to help diagnose missing cookie in cross-origin requests
-        console.log('[isAuth] cookies:', req.cookies, 'cookie header:', req.headers?.cookie);
+        // debug log to help diagnose missing cookie or auth header in cross-origin requests
+        console.log('[isAuth] cookies:', req.cookies, 'cookie header:', req.headers?.cookie, 'authorization:', req.headers?.authorization);
 
-        // try cookie-parser value first, then fall back to raw cookie header
-        let token = req.cookies?.token;
+        // 1) Try Authorization header: 'Bearer <token>'
+        let token = null;
+        const authHeader = req.headers?.authorization;
+        if (authHeader && authHeader.startsWith('Bearer ')) {
+            token = authHeader.split(' ')[1];
+        }
+
+        // 2) Then try cookie-parser value, then raw cookie header
+        if (!token) token = req.cookies?.token;
         if (!token && req.headers?.cookie) {
             const raw = req.headers.cookie.split(';').map(c => c.trim());
             const kv = raw.find(c => c.startsWith('token='));
