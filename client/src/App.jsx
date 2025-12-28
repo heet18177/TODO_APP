@@ -29,16 +29,16 @@ const App = () => {
       }
     };
 
-    if (!userdata) {
-      fetchCurrUser();
-    }
-  }, [userdata]);
+    fetchCurrUser();
+  }, [!userdata]);
 
   if (loading) {
     return (
       <div className="flex flex-col gap-3 h-[100vh] w-[100vw] items-center justify-center">
         <div className="border-5 h-10 w-10 border-black animate-spin border-t-0 rounded-full"></div>
-        <p className="text-xl">Loading <span className="animate-ping text-3xl">...</span></p>
+        <p className="text-xl">
+          Loading <span className="animate-ping text-3xl">...</span>
+        </p>
       </div>
     );
   }
