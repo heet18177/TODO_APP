@@ -1,5 +1,5 @@
 import express from "express"
-const taskRoute = express.Router();
+const router = express.Router();
 import { add, deleteTasks, getCurrentUser, getTasks, updateTasks } from "../controllers/taskController.js";
 import { isAuth } from "../middlewares/isAuth.js";
 
@@ -9,4 +9,4 @@ router.get("/get", isAuth, getTasks);
 router.put("/update/:id", isAuth, updateTasks);
 router.delete("/delete/:id", isAuth, deleteTasks);
 
-export default taskRoute;
+export default router;
