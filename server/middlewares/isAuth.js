@@ -13,11 +13,10 @@ export const isAuth = (req, res, next) => {
 
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
-        // 🔥 VERY IMPORTANT
-        req.user = decoded._id;
+        req.user = decoded._id; // 🔥 REQUIRED
 
         next();
-    } catch (error) {
+    } catch (err) {
         return res.status(401).json({
             success: false,
             message: "Unauthorized - Invalid token",
