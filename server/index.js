@@ -10,7 +10,10 @@ const Port = process.env.PORT
 app.use(express.json());
 app.use(cookieParser());
 
-app.use(cors({ origin: process.env.CLIENT_URL, credentials: true }));
+app.use(cors({
+    origin: process.env.CLIENT_URL,
+    credentials: true
+}));
 
 //import routes
 import userRoute from "./routes/userRoute.js";
