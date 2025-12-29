@@ -1,7 +1,7 @@
 import express from "express"
 const taskRoute = express.Router();
 import { add, deleteTasks, getCurrentUser, getTasks, updateTasks } from "../controllers/taskController.js";
-import { isAuth } from "../middleware/isAuth.js";
+import { isAuth } from "../middlewares/isAuth.js";
 
 router.get("/getUser", isAuth, getCurrentUser);
 router.post("/add", isAuth, add);
