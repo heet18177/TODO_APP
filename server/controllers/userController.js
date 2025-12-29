@@ -29,7 +29,7 @@ export const signup = async (req, res) => {
             password: hashpass,
         });
 
-        const token = jwt.sign(
+        const token = await jwt.sign(
             { _id: createUser._id },
             process.env.JWT_SECRET,
             { expiresIn: "7d" }
@@ -86,7 +86,7 @@ export const login = async (req, res) => {
         }
 
         //generate JWT  token
-        const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET, { expiresIn: "7d" });
+        const token = await jwt.sign({ _id: user._id }, process.env.JWT_SECRET, { expiresIn: "7d" });
 
         //set cookie for store token
         res.cookie("token", token, {
