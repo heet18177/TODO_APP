@@ -2,16 +2,14 @@ import { SERVER_URL } from "@/main";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-export const FetchCurrUser = createAsyncThunk('', async () => {
+export const FetchCurrUser = createAsyncThunk("", async () => {
   try {
     const res = await axios.get(`${SERVER_URL}/api/task/getUser`, {
       withCredentials: true,
     });
 
     return res.data;
-  } 
-  
-  catch (err) {
+  } catch (err) {
     console.log(err.message);
   }
 });
