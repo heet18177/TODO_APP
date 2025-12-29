@@ -1,7 +1,7 @@
 import express from "express"
+const userRoute = express.Router();
 import { login, logout, signup } from "../controllers/userController.js";
 
-const userRoute = express.Router();
 
 userRoute.post("/signup" , signup);
 userRoute.post("/login" ,  login);

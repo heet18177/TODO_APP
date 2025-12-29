@@ -2,7 +2,7 @@ import jwt from "jsonwebtoken"
 
 export const isAuth = async (req, res, next) => {
     try {
-        const token = req?.cookies?.token || req.headers.authorization;
+        const token = req.cookies?.token;
 
         if (!token) {
             return res.status(401).json({
@@ -13,7 +13,7 @@ export const isAuth = async (req, res, next) => {
 
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
-        req.user = { _id: decoded._id };
+        req.user = decoded._id;
 
         if (!req.user) {
             return res.status(401).json({
@@ -31,5 +31,3 @@ export const isAuth = async (req, res, next) => {
         });
     }
 };
-
-
